@@ -9,9 +9,3 @@
 ```
 	> npm i -S express body-parser react react-dom socket.io webpack webpack-dev-middleware babel-core babel-loader babel-preset-es2015 babel-preset-react babel-plugin-transform-class-properties
 ```
-
-To start server and run app...
-
-```
-	> npm start
-```
