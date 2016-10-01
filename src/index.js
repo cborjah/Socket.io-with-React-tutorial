@@ -12,16 +12,24 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() { // Used over componentWillMount to avoid blocking or async issues.
+    this.socket = io('/') // Triggers on connection event on the web server.
+    this.socket.on('message', message => { // Event listener
+      this.setState({ messages: [message, ...this.state.messages] });
+    })
+  }
+
   handleSubmit(e) {
     const body = e.target.value;
     if(e.keyCode === 13 && body) { // If enter key (keyCode === 13) was pressed and body exists...
       console.log("body: ", body)
       const message = {
-        body: body,
+        body, // ES6 syntax. This works becuase the key is the same as its value. It's equivalent to body: body
         from: 'Me'
       }
       this.setState({ messages: [message, ...this.state.messages] });
-      e.target.value = ''; // Empties input field
+      this.socket.emit('message', body) // Sends event to listener.
+      e.target.value = ''; // Empties input field.
     }
   }
 

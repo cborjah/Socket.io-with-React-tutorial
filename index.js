@@ -8,11 +8,20 @@ const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app); // ** Need to create an http server. This is for socket.io. **
-const io = socketIo(server); // Create a new instance of socket.io and hand it the web server that was created to bind to it.
+const io = socketIo(server); // Create a new instance of socket.io and hands it the web server that was created to bind to it.
 
 app.use(express.static(__dirname + '/public')); // Serves static files from a directory
 // app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({ extended: false }));
+
+io.on('connection', socket => { // the 'connection' event happens whenever a new web socket connects to the server.
+  socket.on('message', body => { // tells that socket to listen for message events
+    socket.broadcast.emit('message', {
+      body,
+      from: socket.id.slice(8)
+    })
+  })
+})
 
 // ** Normally you would listen on app if your doing express. But if you do that everything will work but your sockets will not
 // be connected. You MUST start on the server, NOT on the app itself. **
