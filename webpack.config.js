@@ -1,7 +1,8 @@
 module.exports = {
-  client: __dirname + '/src', // Entry point, this is where client side JS will live. In this case it will be in the src folder.
+  entry: './src/index.js', // Entry point, this is where client side JS will live. In this case it will be in the src folder.
   output: {
-    path: '/'
+    filename: 'bundle.js',
+    path: __dirname + '/public'
   },
   devtool: 'source-maps',
   module: { // Where you plug in babel.

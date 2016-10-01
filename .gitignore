@@ -1,2 +1,6 @@
 // Library
 node_modules
+
+// Bundles
+public/bundle.js
+public/bundle.js.map

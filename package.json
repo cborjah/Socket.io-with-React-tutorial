@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bundle": "node_modules/.bin/webpack -w"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "babel-preset-react": "^6.16.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "nodemon": "^1.10.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "socket.io": "^1.4.8",
